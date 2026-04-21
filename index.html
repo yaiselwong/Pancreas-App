@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pancreatitisv02</title>
+    <base href="/" />
+    <link href="_framework/dotnet.rx1xrjqtzd.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-D4/RsqJxHgYU6hFD+F/hRaLb4A3Uc1dinWAjCC0mtfk=" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="Pancreatitisv02.styles.css" rel="stylesheet" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <script type="importmap">{
+  "imports": {
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.nmswdfqy93.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.f4b1oiwlzh.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.rx1xrjqtzd.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/blazor.webassembly.66stpp682q.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
+    "./_framework/blazor.webassembly.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
+    "./_framework/dotnet.js": "sha256-D4/RsqJxHgYU6hFD+F/hRaLb4A3Uc1dinWAjCC0mtfk=",
+    "./_framework/dotnet.native.js": "sha256-70E15lblOHsEKbi+KQUkTRUM9J2jFBqWAFzw5+jMAwg=",
+    "./_framework/dotnet.native.nmswdfqy93.js": "sha256-70E15lblOHsEKbi+KQUkTRUM9J2jFBqWAFzw5+jMAwg=",
+    "./_framework/dotnet.runtime.f4b1oiwlzh.js": "sha256-j86bNQPKznxC4epcftZFbThfaMXvIRmSeHo8PdvTrdA=",
+    "./_framework/dotnet.runtime.js": "sha256-j86bNQPKznxC4epcftZFbThfaMXvIRmSeHo8PdvTrdA=",
+    "./_framework/dotnet.rx1xrjqtzd.js": "sha256-D4/RsqJxHgYU6hFD+F/hRaLb4A3Uc1dinWAjCC0mtfk="
+  }
+}</script>
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
+    <script>navigator.serviceWorker.register('/service-worker.js', { updateViaCache: 'none' });</script>
+    <script src="js/indexedDb.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', event => {
+                if (event.data?.type === 'NEW_VERSION_AVAILABLE') {
+                    // Avisar a Blazor
+                    window.dispatchEvent(new Event('pwa-update-available'));
+                }
+            });
+        }
+    </script>
+    <script>
+        window.registerPwaUpdateHandler = () => {
+            window.addEventListener('pwa-update-available', () => {
+                var modal = new bootstrap.Modal(document.getElementById('updateModal'));
+                modal.show();
+            });
+        };
+    </script>
+
+</body>
+
+</html>
