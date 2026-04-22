@@ -4,21 +4,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pancreatitisv02</title>
-    
+    <title>Pancreas-App</title>
+
     <base href="/Pancreas-App/" />
 
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    
     <link href="Pancreatitisv02.styles.css" rel="stylesheet" />
-    
-    <link href="manifest.webmanifest" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
-    
-    </head>
+
+    <script type="text/javascript">
+        // El número de segmentos del path que corresponden al nombre del repo (1 para /Pancreas-App/)
+        var pathSegmentsToKeep = 1;
+
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+            l.pathname.split('/').slice(1 + pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+    </script>
+</head>
 
 <body>
     <div id="app">
@@ -26,7 +34,7 @@
             <circle r="40%" cx="50%" cy="50%" />
             <circle r="40%" cx="50%" cy="50%" />
         </svg>
-        <div class="loading-progress-text"></div>
+        <div class="loading-progress-text">Redirigiendo...</div>
     </div>
 
     <div id="blazor-error-ui">
@@ -38,29 +46,8 @@
     <script src="_framework/blazor.webassembly.js"></script>
     
     <script>
-	navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('Service Worker registrado', reg))
-        .catch(err => console.error('Error al registrar SW', err));
-	</script>
-    
-    <script src="js/indexedDb.js"></script>
-    
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.addEventListener('message', event => {
-                if (event.data?.type === 'NEW_VERSION_AVAILABLE') {
-                    window.dispatchEvent(new Event('pwa-update-available'));
-                }
-            });
-        }
-    </script>
-    <script>
-        window.registerPwaUpdateHandler = () => {
-            window.addEventListener('pwa-update-available', () => {
-                var modal = new bootstrap.Modal(document.getElementById('updateModal'));
-                modal.show();
-            });
-        };
+        navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
     </script>
 </body>
+
 </html>
