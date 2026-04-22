@@ -4,20 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pancreas-App</title>
-
+    <title>Pancreatitisv02</title>
+    
     <base href="/Pancreas-App/" />
 
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-
-    <link href="Pancreas-App.styles.css" rel="stylesheet" />
-
+    
+    <link href="Pancreatitisv02.styles.css" rel="stylesheet" />
+    
     <link href="manifest.webmanifest" rel="manifest" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
-</head>
+    
+    </head>
 
 <body>
     <div id="app">
@@ -34,16 +35,13 @@
         <span class="dismiss">🗙</span>
     </div>
 
-    <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
-
-    <script>
-        navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
-    </script>
-
+    <script src="_framework/blazor.webassembly.js"></script>
+    
+    <script>navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });</script>
+    
     <script src="js/indexedDb.js"></script>
-
+    
     <script>
-        // Manejador de actualización de PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.addEventListener('message', event => {
                 if (event.data?.type === 'NEW_VERSION_AVAILABLE') {
@@ -51,19 +49,14 @@
                 }
             });
         }
-
+    </script>
+    <script>
         window.registerPwaUpdateHandler = () => {
             window.addEventListener('pwa-update-available', () => {
-                if (typeof bootstrap !== 'undefined') {
-                    var modalElement = document.getElementById('updateModal');
-                    if (modalElement) {
-                        var modal = new bootstrap.Modal(modalElement);
-                        modal.show();
-                    }
-                }
+                var modal = new bootstrap.Modal(document.getElementById('updateModal'));
+                modal.show();
             });
         };
     </script>
 </body>
-
 </html>
